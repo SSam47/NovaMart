@@ -74,14 +74,14 @@ h2{font-size:clamp(44px,6.4vw,96px)}
 .hero-prices span{font:700 30px/1 var(--fn);color:var(--cp)}
 
 /* story */
-.story{position:relative;height:500vh}
+.story{position:relative;height:360vh}
 .story-pin{position:sticky;top:0;height:100svh;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;align-items:center}
 .story-bg{position:absolute;inset:0;background:radial-gradient(60% 70% at 70% 50%,#ece2d2 0%,var(--ch) 70%);will-change:opacity}
 .story-media{position:relative;grid-column:2;height:78svh;margin-right:6vw}
 .sc{position:absolute;inset:0;overflow:hidden;clip-path:inset(100% 0 0 0);will-change:clip-path}
 .sc[data-i="0"]{clip-path:inset(0)}
 .sc picture,.sc img{width:100%;height:100%;object-fit:cover}
-.sc img{transform:scale(1.15);will-change:transform}
+.sc img{transform:scale(1.1);will-change:transform}
 .story-text{grid-column:1;grid-row:1;position:relative;height:60svh;margin-left:max(24px,calc((100vw - 1280px)/2))}
 .st{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;opacity:0}
 .st[data-i="0"]{opacity:1}
@@ -220,7 +220,7 @@ details p{padding:0 0 26px;color:var(--mu);font-size:17px}
  .cta{margin-bottom:22px;gap:10px}.cta .btn{flex:1;padding:0 12px;height:50px}
  .hero-prices{margin-bottom:14px}.hero-prices span{font-size:24px}.hero-prices li+li{padding-left:14px}
  .ship{font-size:11px;letter-spacing:.12em}
- .story{height:450vh}
+ .story{height:320vh}
  .story-pin{grid-template-columns:1fr;grid-template-rows:58svh 1fr;align-items:stretch}
  .story-media{grid-column:1;grid-row:1;height:auto;margin:calc(var(--hh) + 4px) 20px 0}
  .story-text{grid-column:1;grid-row:2;height:auto;margin:0 20px}
@@ -438,12 +438,6 @@ body[data-f=walnut] .sw-w,body[data-f=beech] .sw-b{background:#fff;color:var(--o
   position: absolute;
   inset: 0;
   animation: breatheSlow 6.5s ease-in-out infinite alternate, glowPulse 8s ease-in-out infinite alternate;
-  will-change: transform;
-}
-
-/* Story pinned product images constantly alive */
-.story-media .sc img {
-  animation: cinemagraphAlive 7.5s ease-in-out infinite alternate;
   will-change: transform;
 }
 
@@ -668,7 +662,7 @@ body[data-f=walnut] .sw-w,body[data-f=beech] .sw-b{background:#fff;color:var(--o
 
 <section class="story" id="story"><div class="story-pin">
 <div class="story-bg"></div>
-<div class="story-media"><figure class="sc" data-i="0"><picture><img src="/assets/4k/img_03.webp" width="540" height="890" alt="" class=""></picture></figure><figure class="sc" data-i="1"><picture><img src="/assets/4k/img_04.webp" width="420" height="420" alt="" class="" loading="lazy" decoding="async"></picture></figure><figure class="sc" data-i="2"><picture><img src="/assets/4k/img_05.webp" width="1080" height="1088" alt="" class="" loading="lazy" decoding="async"></picture></figure><figure class="sc" data-i="3"><picture><img src="/assets/4k/img_06.webp" width="1079" height="1079" alt="" class="" loading="lazy" decoding="async"></picture></figure><figure class="sc" data-i="4"><picture><img src="/assets/4k/img_07.webp" width="1200" height="1600" alt="Turned beech wood sleeve with stepped aluminum collar and silicone insert" class="" loading="lazy" decoding="async"></picture></figure></div>
+<div class="story-media"><figure class="sc" data-i="0"><picture><img src="/assets/4k/img_03.webp" width="540" height="890" alt="" class=""></picture></figure><figure class="sc" data-i="1"><picture><img src="/assets/4k/img_04.webp" width="420" height="420" alt="" class="" decoding="async"></picture></figure><figure class="sc" data-i="2"><picture><img src="/assets/4k/img_05.webp" width="1080" height="1088" alt="" class="" decoding="async"></picture></figure><figure class="sc" data-i="3"><picture><img src="/assets/4k/img_06.webp" width="1079" height="1079" alt="" class="" decoding="async"></picture></figure><figure class="sc" data-i="4"><picture><img src="/assets/4k/img_07.webp" width="1200" height="1600" alt="Turned beech wood sleeve with stepped aluminum collar and silicone insert" class="" decoding="async"></picture></figure></div>
 <div class="story-text"><div class="st" data-i="0"><h2>Sits right<br>in your cup holder.</h2><p>Turned wood body with an aluminum collar sized to sit steadily inside vehicle cup holders.</p></div><div class="st" data-i="1"><h2>Traps ash<br>inside.</h2><p>Ash and cigarette ends drop directly into the metal canister, preventing wind from blowing them across the cabin.</p></div><div class="st" data-i="2"><h2>Three tip<br>adapters.</h2><p>Comes with silicone inserts for standard, medium, and slim cigarettes.</p></div><div class="st" data-i="3"><h2>Easy to<br>carry along.</h2><p>Drop it into a door pocket, cup slot, or your jacket pocket when you step out.</p></div><div class="st" data-i="4"><h2>Turned wood sleeve.<br>Threaded metal core.</h2><p>The wood outer shell unscrews smoothly from the internal chamber when you need to empty ash.</p></div></div>
 
 </div></section>
@@ -1003,20 +997,31 @@ body[data-f=walnut] .sw-w,body[data-f=beech] .sw-b{background:#fff;color:var(--o
         scrollTrigger: { trigger: h, start: 'top 88%', toggleActions: 'play none none reverse' } });
     });
 
-    // pinned 5-scene story, fully scrubbed with REVERSED scroll transitions
+    // Pinned 5-scene story. Scroll scrubs scale/y on the photos, so those
+    // <img> elements must not also run a CSS transform animation.
     const sc = $$('.sc'), st = $$('.st'), n = sc.length;
-    const tl = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: '.story', start: 'top top', end: 'bottom bottom', scrub: .6 } });
-    tl.fromTo($('img', sc[0]), { scale: 1.02 }, { scale: 1.15, duration: 1 }, 0)
-      .fromTo('.story-media', { xPercent: 0 }, { xPercent: 3, duration: n }, 0);
-    for (let i = 1; i < n; i++) {
-      const t = i - .45;
-      tl.fromTo(sc[i], { clipPath: 'inset(0% 0% 100% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: .55, ease: 'power2.inOut' }, t)
-        .fromTo($('img', sc[i]), { scale: 1.02, yPercent: -4 }, { scale: 1.15, yPercent: 0, duration: 1.1 }, t)
-        .to($('img', sc[i - 1]), { yPercent: 6, duration: .55 }, t)
-        .to(st[i - 1], { opacity: 0, y: 40, duration: .3 }, t)
-        .fromTo(st[i], { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: .35 }, t + .2)
-        .to('.story-bg', { opacity: i % 2 ? .55 : 1, duration: .55 }, t);
-    }
+    const tl = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: '.story', start: 'top top', end: 'bottom bottom', scrub: .45 } });
+    tl.fromTo('.story-media', { xPercent: 0 }, { xPercent: 3, duration: n }, 0);
+    sc.forEach((scene, i) => {
+      const img = $('img', scene);
+      const wipe = .42;
+      const panStart = i === 0 ? 0 : i - wipe;
+      const panEnd = i === n - 1 ? n : i + 1;
+      gsap.set(img, { scale: 1.1, yPercent: -4 });
+      tl.fromTo(img,
+        { scale: 1.1, yPercent: -4 },
+        { scale: 1.22, yPercent: 6, duration: panEnd - panStart, immediateRender: false },
+        panStart);
+      if (!i) return;
+      gsap.set(scene, { clipPath: 'inset(0% 0% 100% 0%)' });
+      tl.fromTo(scene,
+          { clipPath: 'inset(0% 0% 100% 0%)' },
+          { clipPath: 'inset(0% 0% 0% 0%)', duration: wipe, ease: 'power2.inOut', immediateRender: false },
+          i - wipe)
+        .to(st[i - 1], { opacity: 0, y: 28, duration: .36 }, i - wipe)
+        .fromTo(st[i], { opacity: 0, y: -28 }, { opacity: 1, y: 0, duration: .36, immediateRender: false }, i - wipe)
+        .to('.story-bg', { opacity: i % 2 ? .55 : 1, duration: wipe }, i - wipe);
+    });
 
     // Dynamic motion graphic scroll-reactive tilt & float on headlines (REVERSED scrub)
     $$('.lines').forEach(h => {
