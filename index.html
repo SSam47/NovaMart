@@ -99,13 +99,14 @@ section{position:relative}
 .a{position:relative;overflow:hidden;background:#fff;border-radius:4px;box-shadow:0 4px 24px rgba(35,30,24,.06)}
 .a picture,.a img{width:100%;height:100%;object-fit:cover}
 .a-main{grid-column:span 2;grid-row:span 2}
+.anat-grid .a:last-child{grid-column:3 / span 2;grid-row:2}
 .a figcaption{position:absolute;left:0;right:0;bottom:0;padding:40px 18px 16px;background:linear-gradient(transparent,rgba(22,20,15,.92));font:600 13px/1.2 var(--f);letter-spacing:.12em;text-transform:uppercase}
 .a figcaption b{display:block;color:var(--cu);font-size:11px;margin-bottom:6px}
 
 /* fits */
 .fits{background:var(--ow);color:var(--ch)}
 .fits .eyebrow{display:none!important;color:var(--wal)}.fits .cu{color:var(--wal2)}.fits .muted{color:#6d655a}
-.fits-in{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(32px,6vw,100px);align-items:center}
+.fits-in{display:grid;grid-template-columns:minmax(0,760px);gap:clamp(32px,6vw,100px);align-items:center}
 .fits-img{overflow:hidden}
 .sizes{list-style:none;margin:40px 0 28px;border-top:1px solid rgba(22,20,15,.15)}
 .sizes li{display:flex;justify-content:space-between;align-items:baseline;padding:20px 0;border-bottom:1px solid rgba(22,20,15,.15)}
@@ -230,6 +231,7 @@ details p{padding:0 0 26px;color:var(--mu);font-size:17px}
  .story-bar{bottom:calc(24px + 76px);left:20px;width:120px}
  .anat-grid{grid-template-columns:1fr 1fr;grid-auto-rows:200px;gap:8px}
  .a-main{grid-column:1/-1;grid-row:span 2}
+ .anat-grid .a:last-child{grid-column:1 / -1;grid-row:auto}
  .a figcaption{font-size:11px;padding:30px 12px 12px}
  .fits-in{grid-template-columns:1fr}
  .lf{height:82svh}
@@ -674,22 +676,12 @@ body[data-f=walnut] .sw-w,body[data-f=beech] .sw-b{background:#fff;color:var(--o
 <figure class="a reveal"><picture><img src="/assets/4k/img_09.webp" width="460" height="970" alt="Portable cylindrical wood body" class="" loading="lazy" decoding="async"></picture><figcaption>Portable body</figcaption></figure>
 <figure class="a reveal"><picture><img src="/assets/4k/img_10.webp" width="180" height="380" alt="Wood finish close-up" class="" loading="lazy" decoding="async"></picture><figcaption>Wood finish</figcaption></figure>
 <figure class="a reveal"><picture><img src="/assets/4k/img_11.webp" width="230" height="240" alt="Copper metal collar close-up" class="" loading="lazy" decoding="async"></picture><figcaption>Metal collar</figcaption></figure>
-<figure class="a reveal"><picture><img src="/assets/4k/img_12.webp" width="360" height="230" alt="Two interchangeable black tip inserts" class="" loading="lazy" decoding="async"></picture><figcaption>Interchangeable tip inserts</figcaption></figure>
-<figure class="a reveal"><picture><img src="/assets/4k/img_13.webp" width="420" height="420" alt="Compact opening at the top of the ashtray" class="" loading="lazy" decoding="async"></picture><figcaption>Compact opening</figcaption></figure>
-<figure class="a reveal"><picture><img src="/assets/4k/img_14.webp" width="540" height="890" alt="Easy-to-carry slim form" class="" loading="lazy" decoding="async"></picture><figcaption>Easy-to-carry form</figcaption></figure>
 </div></div></section>
 
 <section class="fits"><div class="edge" aria-hidden="true"><span>Three fits • Three fits • Three fits</span></div><div class="wrap fits-in">
-<div class="fits-img reveal"><picture><img src="/assets/4k/img_15.webp" width="1080" height="1088" alt="Beech ashtray with three tip inserts sized 5.2mm, 6.7mm and 7.8mm" class="" loading="lazy" decoding="async"></picture></div>
 <div class="fits-c"><h2 class="lines"><span><i>Fits whatever</i></span><span><i class="cu">you smoke.</i></span></h2>
 <ol class="sizes"><li><b>Regular</b><span>7.8 mm</span></li><li><b>Medium</b><span>6.7 mm</span></li><li><b>Slim</b><span>5.2 mm</span></li></ol>
 <p class="muted">Press the matching silicone collar into the top opening so your cigarette seals firmly while smoking.</p></div></div></section>
-
-<section class="life">
-<div class="lf"><picture><img src="/assets/4k/img_16.webp" width="1376" height="768" alt="Driver holding the portable wooden ashtray cylinder while driving" class="" loading="lazy" decoding="async"></picture><div class="lf-c"><h3>Easy to hold while driving.</h3></div></div>
-<div class="lf lf-r"><picture><img src="/assets/4k/img_17.webp" width="1080" height="1062" alt="Driver holding a beech portable ashtray while smoking" class="" loading="lazy" decoding="async"></picture><div class="lf-c"><h3>Catches falling ash so your car floor stays clean.</h3></div></div>
-<div class="lf"><picture><img src="/assets/4k/img_18.webp" width="1200" height="1200" alt="Ashtray beside its box and spare tips on a desk" class="" loading="lazy" decoding="async"></picture><div class="lf-c"><h3>Comes with three silicone adapters and cleaning accessories.</h3></div></div>
-</section>
 
 <section class="why" id="why"><div class="wrap faq-in">
 <h2 class="lines"><span><i>Why it</i></span><span><i class="cu">works.</i></span></h2>
@@ -713,7 +705,7 @@ body[data-f=walnut] .sw-w,body[data-f=beech] .sw-b{background:#fff;color:var(--o
 <section class="order" id="order"><div class="wrap order-in">
 <div class="order-l"><h2 class="lines"><span><i>Place your</i></span><span><i class="cu">order.</i></span></h2>
 <p class="muted"><span class="ofin">Finish: <b id="ofin">Walnut</b>. </span>Enter your delivery details below. You can pay with Cash on Delivery or Whish Pay. We confirm your address on WhatsApp before dispatch.</p>
-<div class="order-img"><picture><img src="/assets/4k/img_19.webp" width="540" height="890" alt="Nova Mart portable ashtray" class="" loading="lazy" decoding="async"></picture></div></div>
+</div>
 <form class="form" id="form" novalidate>
 <label>Name<input name="name" autocomplete="name" required></label>
 <label>Phone<input name="phone" type="tel" autocomplete="tel" inputmode="tel" required></label>
@@ -772,12 +764,6 @@ body[data-f=walnut] .sw-w,body[data-f=beech] .sw-b{background:#fff;color:var(--o
 <div class="sec-h"><h2 class="lines"><span><i>Seen up close.</i></span></h2></div>
 <div class="g">
 <figure class="g1 reveal"><picture><img src="/assets/4k/img_20.webp" width="1080" height="1073" alt="Dark walnut and light beech ashtrays on a desk" class="" loading="lazy" decoding="async"></picture></figure>
-<figure class="g2 reveal"><picture><img src="/assets/4k/img_21.webp" width="1080" height="1062" alt="Beech ashtray in use" class="" loading="lazy" decoding="async"></picture></figure>
-<figure class="g3 reveal"><picture><img src="/assets/4k/img_22.webp" width="230" height="240" alt="Copper collar detail" class="" loading="lazy" decoding="async"></picture></figure>
-<figure class="g4 reveal"><picture><img src="/assets/4k/img_23.webp" width="1080" height="1088" alt="Three tip size inserts" class="" loading="lazy" decoding="async"></picture></figure>
-<figure class="g5 reveal"><picture><img src="/assets/4k/img_24.webp" width="1079" height="1079" alt="Walnut ashtray in hand" class="" loading="lazy" decoding="async"></picture></figure>
-<figure class="g6 reveal"><picture><img src="/assets/4k/img_25.webp" width="420" height="420" alt="Opening detail" class="" loading="lazy" decoding="async"></picture></figure>
-<figure class="g7 reveal"><picture><img src="/assets/4k/img_26.webp" width="1200" height="1200" alt="Ashtray with box and inserts" class="" loading="lazy" decoding="async"></picture></figure>
 </div></div></section>
 
 <section class="faq" id="faq"><div class="wrap faq-in">
